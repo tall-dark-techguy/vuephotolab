@@ -2,11 +2,12 @@
 export default defineNuxtConfig({
   devtools: { enabled: false },
   css: [
+    "~/assets/css/main.css",
     "primevue/resources/themes/lara-light-green/theme.css",
     "primeicons/primeicons.css",
-    "~/assets/css/main.css",
   ],
-  modules: ["nuxt-primevue", "@pinia/nuxt"],
+  modules: ["nuxt-primevue", "@pinia/nuxt", "nuxt-mongoose", "@nuxt/content"],
+  content: {},
   primevue: {
     importPT: { as: "Tailwind", from: "primevue/passthrough/tailwind" },
     options: {
@@ -21,5 +22,11 @@ export default defineNuxtConfig({
       tailwindcss: {},
       autoprefixer: {},
     },
+  },
+
+  mongoose: {
+    uri: process.env.MONGODB_URI,
+    modelsDir: "models",
+    options: {},
   },
 });
