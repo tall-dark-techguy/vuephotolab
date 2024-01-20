@@ -6,8 +6,8 @@
       </NuxtLink>
 
       <div class="flex items-center">
-        <NuxtLink to="/">
-          <Button label="Explore" link class="text-neutral-700" />
+        <NuxtLink to="/shop">
+          <Button label="Shop" link class="text-neutral-700" />
         </NuxtLink>
 
         <NuxtLink to="/favourites">
