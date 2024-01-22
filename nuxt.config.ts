@@ -6,7 +6,13 @@ export default defineNuxtConfig({
     "primevue/resources/themes/lara-light-green/theme.css",
     "primeicons/primeicons.css",
   ],
-  modules: ["nuxt-primevue", "@pinia/nuxt", "nuxt-mongoose", "@nuxt/content"],
+  modules: [
+    "nuxt-primevue",
+    "@pinia/nuxt",
+    "nuxt-mongoose",
+    "@nuxt/content",
+    "@hebilicious/vue-query-nuxt",
+  ],
   content: {},
   primevue: {
     importPT: { as: "Tailwind", from: "primevue/passthrough/tailwind" },

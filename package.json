@@ -20,8 +20,10 @@
     "vue-router": "^4.2.5"
   },
   "dependencies": {
+    "@hebilicious/vue-query-nuxt": "^0.3.0",
     "@nuxt/content": "^2.10.0",
     "@pinia/nuxt": "^0.5.1",
+    "@tanstack/vue-query": "^5.17.19",
     "@vueup/vue-quill": "^1.2.0",
     "pinia": "^2.1.7",
     "primeicons": "^6.0.1",

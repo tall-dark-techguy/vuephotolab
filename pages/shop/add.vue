@@ -18,6 +18,25 @@
       <p class="text-sm">Add a product to your shop</p>
     </article>
 
+    <div v-if="isLoading" class="text-center py-4">
+      <i class="pi pi-spin pi-spinner"></i> Loading users...
+    </div>
+
+    <ul v-if="data">
+      <li
+        v-for="user in data"
+        :key="user.id"
+        class="py-3 border-b flex gap-3 items-center"
+      >
+        <Avatar>{{ stringToUpper(user.name.substring(0, 2)) }}</Avatar>
+
+        <article>
+          <p class="tracking-tight">Name: {{ user.name }}</p>
+          <p class="text-xs text-neutral-500">Username: {{ user.username }}</p>
+        </article>
+      </li>
+    </ul>
+
     <form @submit.prevent="handleSubmit" class="px-6 mb-20">
       <div class="space-y-3 mb-4">
         <div class="flex flex-col gap-2">
@@ -104,4 +123,15 @@ console.log(useTodos());
 console.log(usePerfectTodos());
 
 useMountedTodos();
+
+const { isLoading, data, error } = useQuery({
+  queryKey: ["users"],
+  queryFn: () => $fetch("https://jsonplaceholder.typicode.com/users"),
+});
+
+console.log({
+  isLoading: isLoading.value,
+  data: data.value,
+  error: error.value,
+});
 </script>
