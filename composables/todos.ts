@@ -16,3 +16,10 @@ export const useMountedTodos = () => {
 
   return "Mounted todos";
 };
+
+export const useTodoList = () => {
+  return useQuery({
+    queryKey: ["todos"],
+    queryFn: () => $fetch("https://jsonplaceholder.typicode.com/users"),
+  });
+};

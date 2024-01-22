@@ -28,104 +28,41 @@
         </div>
       </div>
 
-      <ul class="grid grid-cols-1 md:grid-cols-3 gap-x-4 gap-y-5 px-4">
-        <li class="overflow-hidden bg-white">
+      <div v-if="isLoading" class="grid grid-cols-1 md:grid-cols-3 gap-4 px-4">
+        <Skeleton height="15rem" />
+        <Skeleton height="15rem" />
+        <Skeleton height="15rem" />
+      </div>
+
+      <ul
+        v-if="data"
+        class="grid grid-cols-1 md:grid-cols-3 gap-x-4 gap-y-5 px-4"
+      >
+        <li
+          v-for="product in data.products"
+          :key="product._id"
+          class="overflow-hidden bg-white"
+        >
           <img
-            src="https://images.pexels.com/photos/5797999/pexels-photo-5797999.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
-            alt=""
+            :src="product.image_url"
+            alt="image"
             class="w-full h-44 rounded-tr rounded-tl object-cover transition hover:scale-105"
           />
 
           <article class="p-4 border rounded-br rounded-bl">
             <p class="font-semibold tracking-tight truncate">
-              Lorem ipsum dolor sit amet.
+              {{ product.title }}
             </p>
             <p class="text-sm font-light truncate mb-1">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum,
-              culpa?
+              {{ product.description }}
             </p>
-            <p class="text-lg font-semibold tracking-tight mb-2">NGN 1,000</p>
-
-            <Button
-              label="Add to cart"
-              size="small"
-              outlined
-              severity="secondary"
-              class="w-full"
-            />
-          </article>
-        </li>
-
-        <li class="overflow-hidden bg-white">
-          <img
-            src="https://images.pexels.com/photos/5797999/pexels-photo-5797999.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
-            alt=""
-            class="w-full h-44 rounded-tr rounded-tl object-cover transition hover:scale-105"
-          />
-
-          <article class="p-4 border rounded-br rounded-bl">
-            <p class="font-semibold tracking-tight truncate">
-              Lorem ipsum dolor sit amet.
+            <p class="text-lg font-semibold tracking-tight">
+              NGN {{ product.price }}
             </p>
-            <p class="text-sm font-light truncate mb-1">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum,
-              culpa?
+
+            <p class="text-xs text-neutral-500 mb-4">
+              {{ product.quantity }} left in stock
             </p>
-            <p class="text-lg font-semibold tracking-tight mb-2">NGN 1,000</p>
-
-            <Button
-              label="Add to cart"
-              size="small"
-              outlined
-              severity="secondary"
-              class="w-full"
-            />
-          </article>
-        </li>
-
-        <li class="overflow-hidden bg-white">
-          <img
-            src="https://images.pexels.com/photos/5797999/pexels-photo-5797999.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
-            alt=""
-            class="w-full h-44 rounded-tr rounded-tl object-cover transition hover:scale-105"
-          />
-
-          <article class="p-4 border rounded-br rounded-bl">
-            <p class="font-semibold tracking-tight truncate">
-              Lorem ipsum dolor sit amet.
-            </p>
-            <p class="text-sm font-light truncate mb-1">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum,
-              culpa?
-            </p>
-            <p class="text-lg font-semibold tracking-tight mb-2">NGN 1,000</p>
-
-            <Button
-              label="Add to cart"
-              size="small"
-              outlined
-              severity="secondary"
-              class="w-full"
-            />
-          </article>
-        </li>
-
-        <li class="overflow-hidden bg-white">
-          <img
-            src="https://images.pexels.com/photos/5797999/pexels-photo-5797999.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
-            alt=""
-            class="w-full h-44 rounded-tr rounded-tl object-cover transition hover:scale-105"
-          />
-
-          <article class="p-4 border rounded-br rounded-bl">
-            <p class="font-semibold tracking-tight truncate">
-              Lorem ipsum dolor sit amet.
-            </p>
-            <p class="text-sm font-light truncate mb-1">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum,
-              culpa?
-            </p>
-            <p class="text-lg font-semibold tracking-tight mb-2">NGN 1,000</p>
 
             <Button
               label="Add to cart"
@@ -140,3 +77,7 @@
     </div>
   </section>
 </template>
+
+<script setup>
+const { data, isLoading } = useProducts();
+</script>

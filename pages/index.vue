@@ -29,12 +29,16 @@
           <p>Beautiful and captivating photos to make your day</p>
         </article>
 
+        <div v-if="isLoading">
+          <p class="text-center">Loading photos...</p>
+        </div>
+
         <div
-          v-if="photoData"
+          v-if="data"
           class="grid grid-cols-1 md:grid-cols-4 gap-x-4 gap-y-8"
         >
           <div
-            v-for="photo in photoData.photos"
+            v-for="photo in data.photos"
             :key="photo.id"
             class="hover:scale-[.99] transition"
           >
@@ -64,16 +68,12 @@
             </div>
           </div>
         </div>
-
-        <div v-else>
-          <p class="text-center">Loading photos...</p>
-        </div>
       </div>
     </section>
   </div>
 </template>
 
-<script setup lang="ts">
-const photoData = await $fetch("/api/photos/all");
+<script setup>
+const { isLoading, data, error } = usePhotos();
 const favouriteStore = useFavouriteStore();
 </script>
