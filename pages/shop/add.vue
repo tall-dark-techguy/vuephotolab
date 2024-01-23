@@ -71,6 +71,8 @@
 </template>
 
 <script setup>
+import { useAddProduct } from "~/composables/products";
+
 const router = useRouter();
 
 const form = reactive({
@@ -81,18 +83,22 @@ const form = reactive({
   quantity: 0,
 });
 
-const { isPending, mutate, error } = useMutation({
-  mutationFn: (body) => $fetch("/api/shop/products", { method: "POST", body }),
-
-  onSuccess: (data) => {
-    router.push("/shop");
-  },
-  onError: (error) => {
-    console.log(error);
-  },
-});
+const { isPending, mutate, error } = useAddProduct();
 
 const handleSubmit = () => {
-  mutate(form);
+  mutate(form, {
+    onSuccess: (data) => {
+      router.push("/shop");
+    },
+    onError: async (error) => {
+      alert("Please fill all the fields correctly");
+
+      if (error.response) {
+        console.log(error.response._data.message);
+      } else {
+        console.log(error.message);
+      }
+    },
+  });
 };
 </script>

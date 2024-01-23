@@ -64,13 +64,7 @@
               {{ product.quantity }} left in stock
             </p>
 
-            <Button
-              label="Add to cart"
-              size="small"
-              outlined
-              severity="secondary"
-              class="w-full"
-            />
+            <AddToCartButton v-bind="product" />
           </article>
         </li>
       </ul>
