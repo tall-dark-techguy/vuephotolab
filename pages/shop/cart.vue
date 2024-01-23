@@ -38,6 +38,21 @@
           <RemoveFromCart :itemId="item.id" />
         </article>
       </li>
+
+      <li
+        v-if="data.cart.items.length === 0"
+        class="text-center border py-12 px-4"
+      >
+        <p class="mb-2">
+          <i class="pi pi-shopping-cart text-5xl text-neutral-500"></i>
+        </p>
+
+        <p class="text-neutral-700 mb-6">Your cart is empty</p>
+
+        <NuxtLink to="/shop">
+          <Button label="Start shopping" />
+        </NuxtLink>
+      </li>
     </ul>
   </div>
 </template>

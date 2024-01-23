@@ -15,6 +15,8 @@ const props = defineProps({
   itemId: String,
 });
 
+const queryClient = useQueryClient();
+
 const { isPending, mutate } = useMutation({
   mutationFn: () =>
     $fetch("/api/shop/cart/" + props.itemId, { method: "DELETE" }),
@@ -25,7 +27,7 @@ const handleRemove = () => {
     {},
     {
       onSuccess: (data) => {
-        console.log(data);
+        queryClient.invalidateQueries({ queryKey: ["cart"] });
       },
       onError: (error) => {
         console.log(error);
